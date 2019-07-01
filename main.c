@@ -39,6 +39,6 @@ int main(int argc, char **argv)
 		}
 		i++;
 	}
-	handler(flags);
+	ft_ls(".",flags);
 	return (0);
 }
