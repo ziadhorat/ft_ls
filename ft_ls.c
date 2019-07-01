@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/01 14:10:35 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/01 14:12:12 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void RecDir(char * path, int flag)
     closedir(dp);
     dp = opendir(path);
     while((ep = readdir(dp))) if(strncmp(ep->d_name, ".", 1)) {
-        if(flag && ep->d_type == 4) {
+        if(flag == 1 && ep->d_type == 4) {
             sprintf(newdir, "%s/%s", path, ep->d_name);
             RecDir(newdir, 1);
         }
