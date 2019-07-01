@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/06/28 09:59:20 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/01 14:05:56 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ void RecDir(char * path, int flag)
     }
     struct dirent * ep;
     char newdir[512];
-    printf("\n%s :\n", path);
+	if (flag == 1)
+	    printf("\n\n%s:\n", path);
     while((ep = readdir(dp)))
         if(strncmp(ep->d_name, ".", 1))
-            printf("\t%s\n", ep->d_name);
+            printf("%s\t", ep->d_name);
+		else if (flag == 2)
+            printf("%s\t", ep->d_name);
     closedir(dp);
     dp = opendir(path);
     while((ep = readdir(dp))) if(strncmp(ep->d_name, ".", 1)) {
@@ -34,4 +37,16 @@ void RecDir(char * path, int flag)
         }
     }
     closedir(dp);
+	if (flag != 1)
+		printf("\n");
+}
+
+void handler(unsigned int flags)
+{
+	if (flags & 2)
+		RecDir("./",1);
+	else if (flags & 4)
+		RecDir("./",2);
+	else 
+		RecDir("./",0);
 }
