@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/01 14:05:56 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/01 14:10:35 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void RecDir(char * path, int flag)
 
 void handler(unsigned int flags)
 {
-	if (flags & 2)
-		RecDir("./",1);
-	else if (flags & 4)
-		RecDir("./",2);
+	if (flags & 2) //-R
+		RecDir(".",1);
+	else if (flags & 4) //-a
+		RecDir(".",2);
 	else 
-		RecDir("./",0);
+		RecDir(".",0); //No flags
 }
