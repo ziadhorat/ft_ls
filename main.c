@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 14:21:14 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/01 14:21:17 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/02 09:21:28 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void illegalFlags(char flag)
 int main(int argc, char **argv)
 {
 	unsigned char flags = 0;
-	int i = 0;
+	int i = 1;
 	int j = 0;
+	int numFlags = 0;
 
-	(void)argc;
 	while (argv[i])
 	{
 		j = 1;
@@ -46,11 +46,17 @@ int main(int argc, char **argv)
 					flags |= 16;
 				else
 					illegalFlags(argv[i][j]);
+				if (j == 1)
+					numFlags++;
 				j++;
 			}
 		}
+		else
+			ft_ls(argv[i],flags); //need to handle error
 		i++;
 	}
-	ft_ls(".",flags);
+	if (numFlags + 1 == argc)
+		ft_ls(".",flags);
+//	ft_putchar('\n');
 	return (0);
 }

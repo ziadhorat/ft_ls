@@ -6,12 +6,13 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/01 14:21:24 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/02 08:58:32 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h> //remove
 #include <string.h> //remove
+#include <sys/errno.h> //might need to remove
 #include <stdlib.h>
 #include <unistd.h>
 #include <dirent.h>
