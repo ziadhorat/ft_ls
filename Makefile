@@ -1,34 +1,22 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/07/01 14:21:43 by zmahomed          #+#    #+#              #
-#    Updated: 2019/07/01 14:21:45 by zmahomed         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = ft_ls
-
-SRCS = 	ft_ls.c \
-		main.c \
-		ft_lib.c
-
-INC = ft_ls.h
-
+LIBFT_PATH = ./libft/
 FLAGS = -Wall -Werror -Wextra
+INC =  -I ./includes/ft_ls.h -I $(LIBFT_PATH)libft.h
+SRCS = ft_ls.c \
+	   main.c
 
 all: $(NAME)
 
 $(NAME):
-	@gcc $(FLAGS) -o $(NAME) $(SRCS)
+	@make -C $(LIBFT_PATH)
+	@gcc $(FLAGS) -o $(NAME) $(SRCS) $(LIBFT_PATH)libft.a
 
 clean:
-	@/bin/rm -f $(OUTPUT)
+	@make -C $(LIBFT_PATH) clean
+	@/bin/rm -rf *.o
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	@make -C $(LIBFT_PATH) fclean
+	@/bin/rm -rf $(NAME)
 
 re: fclean all
