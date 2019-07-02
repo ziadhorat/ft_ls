@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 14:21:14 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/02 09:24:12 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/02 13:39:09 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,10 @@ int main(int argc, char **argv)
 			}
 		}
 		else
-			ft_ls(argv[i],flags); //need to handle error
+			ft_ls(argv[i],flags);
 		i++;
 	}
 	if (numFlags + 1 == argc)
 		ft_ls(".",flags);
-//	ft_putchar('\n');
 	return (0);
 }
