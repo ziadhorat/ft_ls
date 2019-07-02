@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/02 09:23:08 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/02 09:59:42 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void ft_ls(char * path, unsigned int flag)
 	}
     else if(!dp) 
 	{
+		if (errno == 13)
+		{
+        	perror("ft_ls ");
+			return;
+		}
 		ft_putstr("ft_ls: ");
         perror(path);
         return;
