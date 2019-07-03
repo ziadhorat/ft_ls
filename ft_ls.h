@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/02 14:41:55 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/03 14:13:55 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <dirent.h>
+# include <sys/stat.h>
 
 void 	ft_ls(char * path, unsigned int flag);
 void 	handler(unsigned int flags);

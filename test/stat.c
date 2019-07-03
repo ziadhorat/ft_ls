@@ -7,8 +7,8 @@
 
 int main (int argc, char **argv)
 {
-    DIR *midir;
-    struct dirent* info_archivo;
+    DIR *dp;
+    struct dirent* ep;
     struct stat fileStat;
     char fullpath[256];
 
@@ -18,18 +18,18 @@ int main (int argc, char **argv)
         exit(-1);
     }
 
-    if ((midir=opendir(argv[1])) == NULL)
+    if ((dp=opendir(argv[1])) == NULL)
     {
         perror("Error in opendir");
         exit(-1);
     }
 
-    while ((info_archivo = readdir(midir)) != 0)
+    while ((ep = readdir(dp)) != 0)
     {
-        printf ("%s ", info_archivo->d_name);
+        printf ("%s ", ep->d_name);
         strcpy (fullpath, argv[1]);
         strcat (fullpath, "/");
-        strcat (fullpath, info_archivo->d_name);
+        strcat (fullpath, ep->d_name);
         if (!stat(fullpath, &fileStat))
         {
             printf((S_ISDIR(fileStat.st_mode))  ? "d" : "-");
@@ -48,5 +48,5 @@ int main (int argc, char **argv)
         }
         printf("\n");
     }
-    closedir(midir);
+    closedir(dp);
 }
