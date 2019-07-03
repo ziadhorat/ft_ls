@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/03 15:17:05 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/03 15:23:04 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void ft_ls(char * path, unsigned int flag)
 				ft_putstr((fileStat.st_mode & S_IWOTH) ? "w" : "-");
 				ft_putstr((fileStat.st_mode & S_IXOTH) ? "x\t" : "-\t");
 			}
+			ft_putnbr(fileStat.st_size);
+			ft_putchar('\t');
 		}
         if (ft_strncmp(ep->d_name, ".", 1))
 		{
