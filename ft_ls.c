@@ -6,11 +6,25 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/03 15:23:04 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/03 15:55:30 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+char *getUser(uid_t uid)
+{
+	struct passwd *pws;
+	pws = getpwuid(uid);
+	return (pws->pw_name);
+}
+
+char *getGroup(gid_t gid)
+{
+	struct group *pws;
+	pws = getgrgid(gid);
+	return (pws->gr_name);
+}
 
 void ft_ls(char * path, unsigned int flag) 
 {
@@ -28,11 +42,11 @@ void ft_ls(char * path, unsigned int flag)
 	{
 		if (errno == 13)
 		{
-        	perror("ft_ls ");
+        	perror("ft_ls "); //NEED TO CHANGE TO TAKE OUT STDIO.H
 			return;
 		}
 		ft_putstr("ft_ls: ");
-        perror(path);
+        perror(path); //SEE THE OTHER PERROR
         return;
     }
 	if (flag & 2)
@@ -61,6 +75,12 @@ void ft_ls(char * path, unsigned int flag)
 				ft_putstr((fileStat.st_mode & S_IWOTH) ? "w" : "-");
 				ft_putstr((fileStat.st_mode & S_IXOTH) ? "x\t" : "-\t");
 			}
+			ft_putnbr(fileStat.st_nlink);
+			ft_putchar('\t');
+			ft_putstr(getUser(fileStat.st_uid));
+			ft_putchar('\t');
+			ft_putstr(getGroup(fileStat.st_gid));
+			ft_putchar('\t');
 			ft_putnbr(fileStat.st_size);
 			ft_putchar('\t');
 		}
