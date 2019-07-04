@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 13:37:58 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/04 13:38:13 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:03:48 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,15 @@ int error_handle(char * path, DIR *dp, int ierrno, unsigned int flag)
 	{
 		if (ierrno == 13)
 		{
-        	perror("ft_ls "); //NEED TO CHANGE TO TAKE OUT STDIO.H
+			ft_putstr("ft_ls: ");
+			if (path[ft_strlen(path) - 1] != '/')
+				ft_putstr(path);
+			ft_putstr(": Permission denied\n");
 			return (1);
 		}
 		ft_putstr("ft_ls: ");
-        perror(path); //SEE THE OTHER PERROR
+		ft_putstr(path);
+		ft_putstr(": No such file or directory\n");
         return (1);
     }
 	if (flag & 2)

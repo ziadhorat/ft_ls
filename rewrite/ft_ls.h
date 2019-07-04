@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/04 14:52:28 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:11:30 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,11 @@
 # include <pwd.h>
 # include <grp.h>
 # include <time.h>
+
+typedef struct node
+{
+    char *name;
+    struct node *next;
+} snode;
 
 #endif
