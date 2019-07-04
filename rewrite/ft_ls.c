@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 14:51:23 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/04 16:11:49 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:14:02 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,8 @@ void ft_ls(char * path, unsigned int flag)
 		}
 	}	
     closedir(dp);
+	if (!first)
+		deleteList(&first);
 }
 
 void illegalFlags(char flag)
