@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 13:45:37 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/04 13:54:32 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/04 14:03:34 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void l_print(char *path, struct dirent *ep)
 	ft_putnbr(fileStat.st_nlink);
 	ft_putchar('\t');
 	ft_putstr(getUser(fileStat.st_uid));
-	ft_putchar('\t');
+	ft_putstr("  ");
 	ft_putstr(getGroup(fileStat.st_gid));
 	ft_putchar('\t');
 	ft_putnbr(fileStat.st_size);
