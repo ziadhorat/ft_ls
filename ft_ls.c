@@ -6,66 +6,13 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/04 12:52:36 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/04 13:40:23 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void converDate(char *str)
-{
-	char ret[] = "000  0 00:00 ";
-	int i = 4;
-	int j = 0;
-	while (i < 16)
-	{
-		ret[j] = str[i];
-		j++;
-		i++;
-	}
-	ft_putstr(ret);
-}
-
-char *getUser(uid_t uid)
-{
-	struct passwd *pws;
-	pws = getpwuid(uid);
-	return (pws->pw_name);
-}
-
-char *getGroup(gid_t gid)
-{
-	struct group *pws;
-	pws = getgrgid(gid);
-	return (pws->gr_name);
-}
-
-int error_handle(char * path, DIR *dp, int ierrno)
-{
-	if (errno == 20)
-	{
-		ft_putstr(path);
-		return;
-	}
-    else if(!dp) 
-	{
-		if (errno == 13)
-		{
-        	perror("ft_ls "); //NEED TO CHANGE TO TAKE OUT STDIO.H
-			return;
-		}
-		ft_putstr("ft_ls: ");
-        perror(path); //SEE THE OTHER PERROR
-        return;
-    }
-	if (flag & 2)
-	{
-		ft_putstr("\n\n");
-		ft_putstr(path);
-		ft_putstr(":\n");
-	}
-	return (0);
-}
+//void l_print(char *path, struct dirent *ep)
 
 void ft_ls(char * path, unsigned int flag) 
 {
@@ -74,30 +21,7 @@ void ft_ls(char * path, unsigned int flag)
 	char fullPath[256];
 	struct stat fileStat;
 
-/*	if (errno == 20)
-	{
-		ft_putstr(path);
-		return;
-	}
-    else if(!dp) 
-	{
-		if (errno == 13)
-		{
-        	perror("ft_ls "); //NEED TO CHANGE TO TAKE OUT STDIO.H
-			return;
-		}
-		ft_putstr("ft_ls: ");
-        perror(path); //SEE THE OTHER PERROR
-        return;
-    }
-	if (flag & 2)
-	{
-		ft_putstr("\n\n");
-		ft_putstr(path);
-		ft_putstr(":\n");
-	}*/
-
-	if (error_handle(path, dp, errno) == 1)
+	if (error_handle(path, dp, errno, flag) == 1)
 		return;
     while((ep = readdir(dp)))
 	{
@@ -127,7 +51,7 @@ void ft_ls(char * path, unsigned int flag)
 			ft_putchar('\t');
 			ft_putnbr(fileStat.st_size);
 			ft_putchar('\t');
-			converDate(ctime(&fileStat.st_mtime));
+			convertDate(ctime(&fileStat.st_mtime));
 		}
         if (ft_strncmp(ep->d_name, ".", 1))
 		{

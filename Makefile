@@ -3,7 +3,9 @@ LIBFT_PATH = ./libft/
 FLAGS = -Wall -Werror -Wextra
 INC =  -I ./includes/ft_ls.h -I $(LIBFT_PATH)libft.h
 SRCS = ft_ls.c \
-	   main.c
+	   main.c \
+	   extra1.c \
+	   errors.c
 
 all: $(NAME)
 

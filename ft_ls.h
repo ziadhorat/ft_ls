@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/03 16:16:12 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/04 13:38:30 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,9 @@
 
 void 	ft_ls(char * path, unsigned int flag);
 void 	handler(unsigned int flags);
+char *getGroup(gid_t gid);
+char *getUser(uid_t uid);
+void convertDate(char *str);
+int error_handle(char * path, DIR *dp, int ierrno, unsigned int flag);
 
 #endif
