@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/03 16:19:19 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/04 12:52:36 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,8 @@ char *getGroup(gid_t gid)
 	return (pws->gr_name);
 }
 
-void ft_ls(char * path, unsigned int flag) 
+int error_handle(char * path, DIR *dp, int ierrno)
 {
-    DIR * dp = opendir(path);
-    struct dirent * ep;
-	char fullPath[256];
-	struct stat fileStat;
-
 	if (errno == 20)
 	{
 		ft_putstr(path);
@@ -69,6 +64,41 @@ void ft_ls(char * path, unsigned int flag)
 		ft_putstr(path);
 		ft_putstr(":\n");
 	}
+	return (0);
+}
+
+void ft_ls(char * path, unsigned int flag) 
+{
+    DIR * dp = opendir(path);
+    struct dirent * ep;
+	char fullPath[256];
+	struct stat fileStat;
+
+/*	if (errno == 20)
+	{
+		ft_putstr(path);
+		return;
+	}
+    else if(!dp) 
+	{
+		if (errno == 13)
+		{
+        	perror("ft_ls "); //NEED TO CHANGE TO TAKE OUT STDIO.H
+			return;
+		}
+		ft_putstr("ft_ls: ");
+        perror(path); //SEE THE OTHER PERROR
+        return;
+    }
+	if (flag & 2)
+	{
+		ft_putstr("\n\n");
+		ft_putstr(path);
+		ft_putstr(":\n");
+	}*/
+
+	if (error_handle(path, dp, errno) == 1)
+		return;
     while((ep = readdir(dp)))
 	{
 		if (flag & 1) 	//Fix for -a
