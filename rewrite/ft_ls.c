@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 14:51:23 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/04 15:59:59 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:11:49 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,20 @@ snode *insert_node_last(char *name)
 	return (newnode);
 }
 
+void deleteList(snode** head_in)  
+{  
+	snode* current = *head_in;  
+	snode* next;  
+
+	while (current != NULL)  
+	{
+		next = current->next;  
+		free(current);  
+		current = next;  
+	}
+	*head_in = NULL;  
+} 
+
 void FrontBackSplit(snode* source, snode** frontRef, snode** backRef) 
 { 
     snode* fast; 
@@ -74,13 +88,10 @@ snode* SortedMerge(snode* a, snode* b)
 {
     snode* result = NULL;
 
-    /* Base cases */
     if (a == NULL)
         return (b);
     else if (b == NULL)
         return (a);
-
-    /* Pick either a or b, and recur */
     if (ft_strcmp(a->name, b->name) < 0) {
         result = a;
         result->next = SortedMerge(a->next, b);
@@ -99,12 +110,9 @@ void mergeSort(snode** head_in)
     snode* b; 
     if (head->next == NULL) 
         return; 
-    /* Split head into 'a' and 'b' sublists */
     FrontBackSplit(head, &a, &b); 
-    /* Recursively sort the sublists */
     mergeSort(&a); 
     mergeSort(&b); 
-    /* answer = merge the two sorted lists together */
     *head_in = SortedMerge(a, b); 
 }
 
@@ -169,6 +177,26 @@ void ft_ls(char * path, unsigned int flag)
     closedir(dp);
 	mergeSort(&first);
 	display(first);
+//	deleteList(&first);
+    dp = opendir(path);
+    while((ep = readdir(dp))) 
+	{
+		if (strncmp(ep->d_name, ".", 1)) 
+		{
+    	   	if (flag & 2 && ep->d_type == 4) 
+			{
+       	    	ft_ls(ft_strjoin(path, ft_strjoin("/",ep->d_name)), flag);
+       		}
+		}
+		else
+		{
+    	   	if (flag & 2 && flag & 4 && ep->d_type == 4 && ft_strcmp(ep->d_name, ".") != 0 && ft_strcmp(ep->d_name, "..") != 0) 
+			{
+       	    	ft_ls(ft_strjoin(path, ft_strjoin("/",ep->d_name)), flag);
+			}
+		}
+	}	
+    closedir(dp);
 }
 
 void illegalFlags(char flag)
