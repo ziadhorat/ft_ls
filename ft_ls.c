@@ -6,11 +6,25 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/03 15:55:30 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:19:19 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void converDate(char *str)
+{
+	char ret[] = "000  0 00:00 ";
+	int i = 4;
+	int j = 0;
+	while (i < 16)
+	{
+		ret[j] = str[i];
+		j++;
+		i++;
+	}
+	ft_putstr(ret);
+}
 
 char *getUser(uid_t uid)
 {
@@ -83,6 +97,7 @@ void ft_ls(char * path, unsigned int flag)
 			ft_putchar('\t');
 			ft_putnbr(fileStat.st_size);
 			ft_putchar('\t');
+			converDate(ctime(&fileStat.st_mtime));
 		}
         if (ft_strncmp(ep->d_name, ".", 1))
 		{
