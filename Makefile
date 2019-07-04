@@ -5,7 +5,8 @@ INC =  -I ./includes/ft_ls.h -I $(LIBFT_PATH)libft.h
 SRCS = ft_ls.c \
 	   main.c \
 	   extra1.c \
-	   errors.c
+	   errors.c \
+	   print_format.c
 
 all: $(NAME)
 
