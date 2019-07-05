@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 14:51:23 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 11:59:00 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/05 12:34:09 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void ft_ls(char *path, unsigned int flag)
 			insert_node_last(ep, path);
 	}
     closedir(dp);
-	mergeSort(&first);
+	mergeSort(&first, flag);
 	display(first, flag);
     dp = opendir(path);
     while((ep = readdir(dp))) 

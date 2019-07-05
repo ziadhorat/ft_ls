@@ -6,13 +6,13 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 09:08:38 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 12:00:10 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/05 12:51:25 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-snode* SortedMerge(snode* a, snode* b)
+snode* SortedMerge(snode* a, snode* b, unsigned int flag)
 {
     snode* result = NULL;
 
@@ -20,18 +20,25 @@ snode* SortedMerge(snode* a, snode* b)
         return (b);
     else if (b == NULL)
         return (a);
-    if (ft_strcmp(a->name, b->name) < 0) {
+    if (ft_strcmp(a->name, b->name) > 0 && flag & 8) 
+	{
         result = a;
-        result->next = SortedMerge(a->next, b);
+        result->next = SortedMerge(a->next, b, flag);
     }
-    else {
+	else if (ft_strcmp(a->name, b->name) < 0 && !(flag & 8))
+	{
+        result = a;
+        result->next = SortedMerge(a->next, b, flag);
+	}
+    else 
+	{
         result = b;
-        result->next = SortedMerge(a, b->next);
+        result->next = SortedMerge(a, b->next, flag);
     }
     return (result);
 }
 
-void mergeSort(snode** head_in)
+void mergeSort(snode** head_in, unsigned int flag)
 {
     snode* head = *head_in;
     snode* a;
@@ -39,9 +46,9 @@ void mergeSort(snode** head_in)
     if (head->next == NULL)
         return;
     FrontBackSplit(head, &a, &b);
-    mergeSort(&a);
-    mergeSort(&b);
-    *head_in = SortedMerge(a, b);
+    mergeSort(&a, flag);
+    mergeSort(&b, flag);
+    *head_in = SortedMerge(a, b, flag);
 }
 
 snode* create_node(struct dirent *ep, char *path)
@@ -59,11 +66,11 @@ snode* create_node(struct dirent *ep, char *path)
     else
     {
 		tmp = ft_strjoin(path, "/");
-		tmp = ft_strjoin(tmp, "ep->name");
+		tmp = ft_strjoin(tmp, ep->d_name);
 		stat(tmp, &fileStat);
         newnode->name = ep->d_name;
         newnode->type = ep->d_type;
-        newnode->mode = fileStat.st_mode;
+		newnode->mode = fileStat.st_mode;
         newnode->nlink = fileStat.st_nlink;
         newnode->uid = fileStat.st_uid;
         newnode->gid = fileStat.st_gid;
