@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 09:08:38 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 14:57:46 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/05 15:06:47 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ snode* create_node(struct dirent *ep, char *path)
 {
 	snode *newnode;
 	char *tmp;
+	char *tmp2;
 	struct stat fileStat;
 
     newnode = (snode *)malloc(sizeof(snode));
@@ -94,8 +95,8 @@ snode* create_node(struct dirent *ep, char *path)
     }
     else
     {
-		tmp = ft_strjoin(path, "/");
-		tmp = ft_strjoin(tmp, ep->d_name);
+		tmp2 = ft_strjoin(path, "/");
+		tmp = ft_strjoin(tmp2, ep->d_name);
 		stat(tmp, &fileStat);
         newnode->name = ep->d_name;
         newnode->type = ep->d_type;
@@ -108,6 +109,7 @@ snode* create_node(struct dirent *ep, char *path)
 		newnode->mtime = fileStat.st_mtime;
         newnode->next = NULL;
 		free(tmp);
+		free(tmp2);
         return newnode;
     }
 }
