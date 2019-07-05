@@ -6,23 +6,11 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 09:08:38 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 09:58:44 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/05 12:00:10 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-void display(snode *first)
-{
-	snode *ptr;
-	ptr = first;
-	while (ptr != NULL)
-	{
-		ft_putstr(ptr->name);
-		ft_putstr("\t");
-		ptr = ptr->next;
-	}
-}
 
 snode* SortedMerge(snode* a, snode* b)
 {
