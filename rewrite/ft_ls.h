@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 12:45:44 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/05 13:44:01 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ typedef struct node
 {
     char *name;
 	int type;
-//	mode_t mode;
-	char mode[10];
+	mode_t mode;
 	nlink_t nlink;
 	int uid;
 	int gid;
