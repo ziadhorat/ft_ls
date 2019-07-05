@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 09:08:38 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 13:28:18 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/05 14:26:39 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ snode* create_node(struct dirent *ep, char *path)
         newnode->uid = fileStat.st_uid;
         newnode->gid = fileStat.st_gid;
 		newnode->size = fileStat.st_size;
+		newnode->blocks = fileStat.st_blocks;
 		newnode->mtime = fileStat.st_mtime;
         newnode->next = NULL;
 		free(tmp);

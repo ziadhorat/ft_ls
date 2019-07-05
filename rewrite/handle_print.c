@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 11:59:48 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 13:44:30 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/05 14:31:09 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,25 @@ void display_l(mode_t mode, nlink_t nlink, int uid, int gid, off_t size)
 	ft_putstr("\t");
 }
 
+void display_blocks(snode *ptr)
+{
+	int i = 0;
+	ft_putstr("total ");
+	while (ptr)
+	{
+		i+=ptr->blocks;
+		ptr = ptr->next;
+	}
+	ft_putnbr(i);
+	ft_putstr("\n");
+}
+
 void display(snode *first, unsigned int flag)
 {
 	snode *ptr;
 	ptr = first;
+	if (flag & 1)
+		display_blocks(ptr);
 	while (ptr != NULL)
 	{
 		if (!(flag & 4) && ft_strncmp(ptr->name, ".", 1)) 

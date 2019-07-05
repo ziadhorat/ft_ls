@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:51:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 13:44:01 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/05 14:25:06 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct node
 	int gid;
 	off_t size;
 	time_t mtime;
+	int	blocks;
     struct node *next;
 } snode;
 
