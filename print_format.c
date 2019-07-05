@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 13:45:37 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/04 14:03:34 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/05 09:29:14 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void l_print(char *path, struct dirent *ep)
 		ft_putstr((fileStat.st_mode & S_IROTH) ? "r" : "-");
 		ft_putstr((fileStat.st_mode & S_IWOTH) ? "w" : "-");
 		ft_putstr((fileStat.st_mode & S_IXOTH) ? "x\t" : "-\t");
+		printf("%s")
 	}
 	ft_putnbr(fileStat.st_nlink);
 	ft_putchar('\t');
