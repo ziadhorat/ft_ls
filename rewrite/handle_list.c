@@ -6,11 +6,37 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 09:08:38 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 14:26:39 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/05 14:57:46 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+snode* SortedMergeTime(snode* a, snode* b, unsigned int flag)
+{
+    snode* result = NULL;
+
+    if (a == NULL)
+        return (b);
+    else if (b == NULL)
+        return (a);
+    if (a->mtime >= b->mtime && !(flag & 8))
+	{
+		result = a;
+		result->next = SortedMergeTime(a->next, b, flag);
+	}
+    else if (a->mtime < b->mtime && flag & 8)
+	{
+		result = a;
+		result->next = SortedMergeTime(a->next, b, flag);
+	}
+    else 
+	{
+        result = b;
+        result->next = SortedMergeTime(a, b->next, flag);
+    }
+    return (result);
+}
 
 snode* SortedMerge(snode* a, snode* b, unsigned int flag)
 {
@@ -48,7 +74,10 @@ void mergeSort(snode** head_in, unsigned int flag)
     FrontBackSplit(head, &a, &b);
     mergeSort(&a, flag);
     mergeSort(&b, flag);
-    *head_in = SortedMerge(a, b, flag);
+	if (flag & 16)
+    	*head_in = SortedMergeTime(a, b, flag);
+	else
+    	*head_in = SortedMerge(a, b, flag);
 }
 
 snode* create_node(struct dirent *ep, char *path)
