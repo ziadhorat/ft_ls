@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 09:08:38 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 15:06:47 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/08 11:09:34 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,15 @@ snode* create_node(struct dirent *ep, char *path)
     }
     else
     {
-		tmp2 = ft_strjoin(path, "/");
-		tmp = ft_strjoin(tmp2, ep->d_name);
+		if (ft_strcmp(path, "./") != 0)
+		{
+			tmp2 = ft_strjoin(path, "/");
+			tmp = ft_strjoin(tmp2, ep->d_name);
+		}
+		else
+			tmp = ft_strjoin(path, ep->d_name);
 		stat(tmp, &fileStat);
+        newnode->path = tmp;
         newnode->name = ep->d_name;
         newnode->type = ep->d_type;
 		newnode->mode = fileStat.st_mode;
@@ -108,8 +114,8 @@ snode* create_node(struct dirent *ep, char *path)
 		newnode->blocks = fileStat.st_blocks;
 		newnode->mtime = fileStat.st_mtime;
         newnode->next = NULL;
-		free(tmp);
-		free(tmp2);
+//		free(tmp);
+//		free(tmp2);
         return newnode;
     }
 }

@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 14:51:23 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 15:04:30 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/08 11:12:47 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,29 @@ void ft_ls(char *path, unsigned int flag)
 		return;
     while((ep = readdir(dp)))
 	{
-		if (!first)
-			first = insert_node_last(ep, path);
-		else
-			insert_node_last(ep, path);
+		if (ft_strcmp(ep->d_name,".")!=0 && ft_strcmp(ep->d_name,"..")!=0)
+		{
+			if (!first)
+				first = insert_node_last(ep, path);
+			else
+				insert_node_last(ep, path);
+		}
 	}
     closedir(dp);
 	mergeSort(&first, flag);
 	display(first, flag);
-    dp = opendir(path);
-    while((ep = readdir(dp))) 
+
+	snode *ptr=first;
+	while (ptr != NULL)
 	{
-		if (strncmp(ep->d_name, ".", 1)) 
+		if (ptr->type==4)
 		{
-    	   	if (flag & 2 && ep->d_type == 4) 
-			{
-       	    	ft_ls(ft_strjoin(path, ft_strjoin("/",ep->d_name)), flag);
-       		}
+//			ft_putchar('\n');
+//			ft_putstr(ptr->path);
+			ft_ls(ptr->path, flag);
 		}
-		else
-		{
-    	   	if (flag & 2 && flag & 4 && ep->d_type == 4 && ft_strcmp(ep->d_name, ".") != 0 && ft_strcmp(ep->d_name, "..") != 0) 
-			{
-       	    	ft_ls(ft_strjoin(path, ft_strjoin("/",ep->d_name)), flag);
-			}
-		}
-	}	
-    closedir(dp);
+		ptr=ptr->next;
+	}
+
 	deleteList(&first);
 }

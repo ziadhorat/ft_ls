@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 11:56:23 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 15:10:37 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/08 11:04:31 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 		i++;
 	}
 	if (numFlags + 1 == argc)
-		ft_ls(".",flags);
+		ft_ls("./",flags);
 
 	return (0);
 }
