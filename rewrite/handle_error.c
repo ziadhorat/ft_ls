@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 09:16:50 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 09:18:13 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/08 12:40:21 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,12 @@ int error_handle(char * path, DIR *dp, int ierrno, unsigned int flag)
     }
 	if (flag & 2)
 	{
-		ft_putstr("\n\n");
-		ft_putstr(path);
-		ft_putstr(":\n");
+		if (ft_strcmp(path, "./") != 0)
+		{
+			ft_putstr("\n\n");
+			ft_putstr(path);
+			ft_putstr(":\n");
+		}
 	}
 	return (0);
 }

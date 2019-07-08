@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 11:59:48 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/08 11:01:09 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/08 13:39:42 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ char *getGroup(gid_t gid)
 {
 	struct group *pws;
 	pws = getgrgid(gid);
-	return (pws->gr_name);
+	if (pws->gr_name)
+		return (pws->gr_name);
+	return (ft_itoa(gid)); //LEAK MAYBE
 }
 
 void display_l(mode_t mode, nlink_t nlink, int uid, int gid, off_t size)
@@ -84,21 +86,13 @@ void display(snode *first, unsigned int flag)
 		display_blocks(ptr);
 	while (ptr != NULL)
 	{
-		if (!(flag & 4) && ft_strncmp(ptr->name, ".", 1)) 
+		if (flag & 1)
 		{
-			if (flag & 1)
-			{
-				display_l(ptr->mode, ptr->nlink, ptr->uid, ptr->gid, ptr->size);
-				convertDate(ctime(&ptr->mtime));
-			}
-			ft_putstr(ptr->name);
-			ft_putstr("\n");
+			display_l(ptr->mode, ptr->nlink, ptr->uid, ptr->gid, ptr->size);
+			convertDate(ctime(&ptr->mtime));
 		}
-		else if (flag & 4)
-		{
-			ft_putstr(ptr->name);
-			ft_putstr("\n");
-		}
+		ft_putstr(ptr->name);
+		ft_putstr("\n");
 		ptr = ptr->next;
 	}
 }
