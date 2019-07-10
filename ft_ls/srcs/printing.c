@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 11:22:32 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 13:28:22 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	print_normal(t_dir *list, unsigned char flags)
 		if (flags & 2)
 		{
 			ft_putstr(ptr->name);
-			ft_putstr("\t\t");
+			ft_putstr("\n");
 			ptr = ptr->next;
 		}
 		else
@@ -89,7 +89,7 @@ void	print_normal(t_dir *list, unsigned char flags)
 			if (ptr->name[0] != '.')
 			{
 				ft_putstr(ptr->name);
-				ft_putstr("\t\t");
+				ft_putstr("\n");
 			}
 			ptr = ptr->next;
 		}

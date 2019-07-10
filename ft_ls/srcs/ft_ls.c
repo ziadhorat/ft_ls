@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 11:48:09 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 13:28:07 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int		execute_args(int ac, char **av, unsigned char flags)
 			ft_ls(av[i], flags);
 			check = 1;
 		}
+		if (av[i][0] == '-' && av[i][1] == '\0')
+			check = 2;
 		i++;
 	}
 	return (check);
@@ -100,6 +102,5 @@ int		main(int ac, char **av)
 		if (check == 0)
 			ft_ls(".", flags);
 	}
-	ft_putchar('\n');
 	return (0);
 }
