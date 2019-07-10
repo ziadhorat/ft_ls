@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 14:24:42 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 14:35:18 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void				ft_ls(char *path, unsigned char flags);
 void				recursion(t_dir *list, unsigned char flags, char *path);
 char				*convert_un(int uid);
 char				*convert_gn(int gib);
-void				print_list(t_dir *list, unsigned char flags);
+void				print_list(t_dir *list, unsigned char flags, char *path);
 void				print_normal(t_dir *list, unsigned char flags);
-void				print_output(t_dir *list, unsigned char flags);
+void				print_output(t_dir *list, unsigned char flags, char *path);
 void				frontback_split(t_dir *source, t_dir **front_ref,
 						t_dir **back_ref);
 void				merge_s(t_dir **head_ref, unsigned char flags);

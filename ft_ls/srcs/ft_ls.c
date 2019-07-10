@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 14:07:20 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 14:36:56 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_ls(char *path, unsigned char flags)
 	}
 	closedir(dr);
 	merge_s(&initial, flags);
-	print_output(initial, flags);
+	print_output(initial, flags, path);
 	recursion(initial, flags, path);
 	delete_list(&initial);
 }
@@ -102,5 +102,6 @@ int		main(int ac, char **av)
 		if (check == 0)
 			ft_ls(".", flags);
 	}
+	while (1);
 	return (0);
 }

@@ -6,11 +6,27 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 14:24:49 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 14:36:58 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+
+void	ft_linkprint(char *path, t_dir *ptr)
+{
+	char		buffer[65];
+	char		*tpath;
+	char		*tmp;
+
+	ft_bzero(&buffer, 65);
+	tmp = ft_strjoin(path, "/");
+	tpath = ft_strjoin(tmp, ptr->name);
+	ft_strdel(&tmp);
+	readlink(tpath, buffer, 65);
+	ft_putstr(" -> ");
+	ft_putstr(buffer);
+	ft_strdel(&tpath);
+}
 
 void	display_blocks(t_dir *ptr)
 {
@@ -27,7 +43,7 @@ void	display_blocks(t_dir *ptr)
 	ft_putstr("\n");
 }
 
-void	display_l(t_dir *lst)
+void	display_l(t_dir *lst, char *path)
 {
 	if ((S_ISLNK(lst->mode)))
 		ft_putstr("l");
@@ -52,10 +68,14 @@ void	display_l(t_dir *lst)
 	ft_putstr("\t");
 	convert_date(ctime(&lst->mtime));
 	ft_putstr(lst->name);
+	if ((S_ISLNK(lst->mode)))
+	{
+		ft_linkprint(path, lst);
+	}
 	ft_putchar('\n');
 }
 
-void	print_list(t_dir *list, unsigned char flags)
+void	print_list(t_dir *list, unsigned char flags, char *path)
 {
 	t_dir *ptr;
 	t_dir *ptr2;
@@ -67,9 +87,9 @@ void	print_list(t_dir *list, unsigned char flags)
 	while (ptr != NULL)
 	{
 		if (flags & 2)
-			display_l(ptr);
+			display_l(ptr, path);
 		else if (ft_strncmp(ptr->name, ".", 1) != 0)
-			display_l(ptr);
+			display_l(ptr, path);
 		ptr = ptr->next;
 	}
 }
@@ -99,10 +119,10 @@ void	print_normal(t_dir *list, unsigned char flags)
 	}
 }
 
-void	print_output(t_dir *list, unsigned char flags)
+void	print_output(t_dir *list, unsigned char flags, char *path)
 {
 	if (flags & 1)
-		print_list(list, flags);
+		print_list(list, flags, path);
 	else
 		print_normal(list, flags);
 }
