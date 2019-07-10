@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 11:22:05 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 12:46:23 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,21 @@ unsigned char	get_flags(int ac, char **av)
 
 	flags = '\0';
 	i = 1;
-	j = 0;
 	while (i < ac)
 	{
-		if (av[i][j] == '-')
+		j = 0;
+		if (av[i][0] == '-')
 		{
 			j++;
 			while (av[i][j] == 'l' || av[i][j] == 'a' || av[i][j] == 'R' ||
-			av[i][j] == 'r' || av[i][j] == 't')
+					av[i][j] == 'r' || av[i][j] == 't')
 			{
 				flags |= check_flags(av[i][j]);
 				j++;
 			}
 		}
+		else
+			return (flags);
 		i++;
 	}
 	return (flags);
