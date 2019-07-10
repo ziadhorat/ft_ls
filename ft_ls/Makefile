@@ -18,6 +18,8 @@ INC =  -I ./includes/ft_ls.h -I $(LIBFT_PATH)libft.h
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
+SRCO = $(patsubst %.c, %.o, $(SRC))
+
 all: $(NAME)
 
 $(NAME): $(SRCO)
