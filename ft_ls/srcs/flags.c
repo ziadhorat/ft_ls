@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 13:54:46 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 15:08:40 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ void			illega_flag(char c)
 	exit(1);
 }
 
+int				check_if(char c)
+{
+	if (c == 'l' || c == 'a' || c == 'R' || c == 'r' || c == 't')
+		return (1);
+	else
+		return (0);
+}
+
 unsigned char	get_flags(int ac, char **av)
 {
 	int				i;
@@ -58,8 +66,7 @@ unsigned char	get_flags(int ac, char **av)
 			j++;
 			if (av[i][1] == '\0')
 				return (get_flags2(flags));
-			while (av[i][j] == 'l' || av[i][j] == 'a' || av[i][j] == 'R' ||
-					av[i][j] == 'r' || av[i][j] == 't')
+			while (check_if(av[i][j]) == 1)
 				flags |= check_flags(av[i][j++]);
 			if (av[i][j] != 'l' && av[i][j] != 'a' && av[i][j] != 'R' &&
 					av[i][j] != 'r' && av[i][j] != 't' && av[i][j] != '\0')

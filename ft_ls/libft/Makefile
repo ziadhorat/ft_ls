@@ -2,6 +2,7 @@ NAME = libft.a
 
 SRC_NAME = 	ft_atoi.c \
 		ft_bzero.c \
+		ft_putendt.c \
 		ft_foreach.c \
 		ft_isalnum.c \
 		ft_isalpha.c \
@@ -132,6 +133,7 @@ OUTPUT = ft_atoi.o \
 		 ft_wordcount.o \
 		 ft_wordlen.o \
 		 ft_pwr.o \
+		 ft_putendt.o \
 		 ft_sqrt.o
 
 SRC_PATH = ./

@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 10:19:43 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 11:30:28 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 15:12:08 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void				*ft_memalloc(size_t size);
 int					ft_pwr(size_t base, size_t exponent);
 long				ft_sqrt(long num);
+void				ft_putendt(char *str);
 
 #endif

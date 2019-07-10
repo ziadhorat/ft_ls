@@ -10,7 +10,8 @@ SRC_NAME =	flags.c \
 		lists.c \
 		convert.c \
 		sort.c \
-		printing.c
+		printing.c \
+		printing2.c
 
 FLAGS = -Wall -Werror -Wextra
 
