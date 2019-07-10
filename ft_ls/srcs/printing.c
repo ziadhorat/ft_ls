@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 14:36:58 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 14:51:55 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_linkprint(char *path, t_dir *ptr)
 	ft_strdel(&tpath);
 }
 
-void	display_blocks(t_dir *ptr)
+void	display_blocks(t_dir *ptr, unsigned char flags)
 {
 	int i;
 
@@ -36,7 +36,8 @@ void	display_blocks(t_dir *ptr)
 	ft_putstr("total ");
 	while (ptr)
 	{
-		i += ptr->block;
+		if ((ptr->name[0] == '.' && flags & 2) || ptr->name[0] != '.')
+			i += ptr->block;
 		ptr = ptr->next;
 	}
 	ft_putnbr(i);
@@ -83,7 +84,7 @@ void	print_list(t_dir *list, unsigned char flags, char *path)
 	ptr = list;
 	ptr2 = list;
 	if (flags & 1)
-		display_blocks(ptr2);
+		display_blocks(ptr2, flags);
 	while (ptr != NULL)
 	{
 		if (flags & 2)
