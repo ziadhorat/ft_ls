@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 11:17:49 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 11:21:41 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 15:30:48 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char		*convert_gn(int gib)
 
 	grp = getgrgid(gib);
 	if (grp == NULL)
-		perror("getgigid");
+		perror("getgid");
 	else
 		return (grp->gr_name);
 	return (NULL);
