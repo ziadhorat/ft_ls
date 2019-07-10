@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 13:28:22 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 14:24:49 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	display_blocks(t_dir *ptr)
 
 void	display_l(t_dir *lst)
 {
-	ft_putstr((S_ISDIR(lst->mode)) ? "d" : "-");
+	if ((S_ISLNK(lst->mode)))
+		ft_putstr("l");
+	else
+		ft_putstr((S_ISDIR(lst->mode)) ? "d" : "-");
 	ft_putstr((lst->mode & S_IRUSR) ? "r" : "-");
 	ft_putstr((lst->mode & S_IWUSR) ? "w" : "-");
 	ft_putstr((lst->mode & S_IXUSR) ? "x" : "-");
