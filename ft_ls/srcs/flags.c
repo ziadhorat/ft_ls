@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 13:07:34 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 13:54:46 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ unsigned char	get_flags2(unsigned char flags)
 	return (flags);
 }
 
+void			illega_flag(char c)
+{
+	ft_putstr("ft_ls: illegal option -- ");
+	ft_putchar(c);
+	ft_putchar('\n');
+	ft_putstr("usage: ft_ls [-Ralrt] [file ...]\n");
+	exit(1);
+}
+
 unsigned char	get_flags(int ac, char **av)
 {
 	int				i;
@@ -52,6 +61,9 @@ unsigned char	get_flags(int ac, char **av)
 			while (av[i][j] == 'l' || av[i][j] == 'a' || av[i][j] == 'R' ||
 					av[i][j] == 'r' || av[i][j] == 't')
 				flags |= check_flags(av[i][j++]);
+			if (av[i][j] != 'l' && av[i][j] != 'a' && av[i][j] != 'R' &&
+					av[i][j] != 'r' && av[i][j] != 't' && av[i][j] != '\0')
+				illega_flag(av[i][j]);
 		}
 		else
 			return (flags);
