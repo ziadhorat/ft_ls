@@ -1,6 +1,6 @@
 NAME = libft.a
 
-SRCS = 	ft_atoi.c \
+SRC_NAME = 	ft_atoi.c \
 		ft_bzero.c \
 		ft_foreach.c \
 		ft_isalnum.c \
@@ -134,17 +134,31 @@ OUTPUT = ft_atoi.o \
 		 ft_pwr.o \
 		 ft_sqrt.o
 
+SRC_PATH = ./
+
+SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
+
+SRCO = $(patsubst %.c, %.o, $(SRC))
+
+FLAGS = -Wall -Werror -Wextra
+
 all: $(NAME)
 
-$(NAME):
-	@gcc -Wall -Werror -Wextra -c $(SRCS) -I $(INC) 
-	@ar rc $(NAME) $(OUTPUT)
-	@ranlib $(NAME)
+$(NAME): $(SRCO)
+	@ar rc $(NAME) $(SRCO)
+	@echo "\033[92mLibrary Compiled."
+
+$(SRC_PATH)%.o: $(SRC_PATH)%.c
+	@gcc $(FLAGS) -c $< -o $@
 
 clean:
-	@/bin/rm -f $(OUTPUT)
+	@rm -f $(SRCO)
+	@echo "\033[93mLibrary Object Files Removed."
 
-fclean: clean
-	@/bin/rm -f $(NAME)
+fclean:
+	@rm -f $(NAME)
+	@echo "\033[93mLibrary Removed."
 
-re: fclean all
+re:	fclean all
+
+.PHONY: all fclean clean re
