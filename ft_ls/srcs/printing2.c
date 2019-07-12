@@ -6,7 +6,7 @@
 /*   By: zmahomed <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 15:15:43 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 15:17:54 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/12 09:36:59 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,20 @@ void	ft_linkprint(char *path, t_dir *ptr)
 	ft_putstr(" -> ");
 	ft_putstr(buffer);
 	ft_strdel(&tpath);
+}
+
+void	display_blocks(t_dir *ptr, unsigned char flags)
+{
+	int i;
+
+	i = 0;
+	ft_putstr("total ");
+	while (ptr)
+	{
+		if ((ptr->name[0] == '.' && flags & 2) || ptr->name[0] != '.')
+			i += ptr->block;
+		ptr = ptr->next;
+	}
+	ft_putnbr(i);
+	ft_putstr("\n");
 }

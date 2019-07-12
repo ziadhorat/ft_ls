@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 15:30:55 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/12 09:37:31 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ t_dir				*s_merge(t_dir *a, t_dir *b, unsigned char flags);
 t_dir				*set_list(struct dirent *de, char *path);
 void				error_file(char *path);
 void				ft_linkprint(char *path, t_dir *ptr);
+void				display_blocks(t_dir *ptr, unsigned char flags);
 
 #endif
