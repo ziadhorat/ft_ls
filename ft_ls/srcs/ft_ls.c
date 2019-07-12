@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/12 09:50:27 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/12 10:43:09 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	ft_ls(char *path, unsigned char flags)
 	closedir(dr);
 	if (!(flags & 64))
 		merge_s(&initial, flags);
+	else
+		reverse_list(&initial);
 	print_output(initial, flags, path);
 	recursion(initial, flags, path);
 	delete_list(&initial);

@@ -6,11 +6,28 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:33:41 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 11:23:31 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/12 10:45:16 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+
+void		reverse_list(struct s_dir** head_ref) 
+{ 
+	struct s_dir* prev   = NULL; 
+	struct s_dir* current = *head_ref; 
+	struct s_dir* next = NULL; 
+
+	while (current != NULL) 
+	{ 
+		next  = current->next;   
+		current->next = prev;    
+		prev = current; 
+		current = next; 
+	} 
+	*head_ref = prev; 
+} 
+
 
 t_dir		*s_merge_time(t_dir *a, t_dir *b, unsigned int flag)
 {
