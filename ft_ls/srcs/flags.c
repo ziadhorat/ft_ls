@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/12 09:33:52 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/12 09:47:06 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int				check_flags(char c)
 		return (16);
 	else if (c == 'G')
 		return (32);
+	else if (c == 'f')
+		return (64);
 	return (0);
 }
 
@@ -40,13 +42,13 @@ void			illega_flag(char c)
 	ft_putstr("ft_ls: illegal option -- ");
 	ft_putchar(c);
 	ft_putchar('\n');
-	ft_putstr("usage: ft_ls [-Ralrt] [file ...]\n");
+	ft_putstr("usage: ft_ls [-GRaflrt] [file ...]\n");
 	exit(1);
 }
 
 int				check_if(char c)
 {
-	if (c == 'l' || c == 'a' || c == 'R' || c == 'r' || c == 't' || c == 'G')
+	if (check_flags(c) != 0)
 		return (1);
 	else
 		return (0);

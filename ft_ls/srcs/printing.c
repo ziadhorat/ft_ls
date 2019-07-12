@@ -6,7 +6,7 @@
 /*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/12 09:37:11 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/12 09:50:19 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	print_list(t_dir *list, unsigned char flags, char *path)
 		display_blocks(ptr2, flags);
 	while (ptr != NULL)
 	{
-		if (flags & 2)
+		if (flags & 2 || flags & 64)
 			display_l(ptr, path, flags);
 		else if (ft_strncmp(ptr->name, ".", 1) != 0)
 			display_l(ptr, path, flags);
@@ -83,7 +83,7 @@ void	print_normal(t_dir *list, unsigned char flags)
 	ptr = list;
 	while (ptr != NULL)
 	{
-		if (flags & 2)
+		if (flags & 2 || flags & 64)
 		{
 			handle_col(ptr, flags);
 			ft_putstr("\n");
